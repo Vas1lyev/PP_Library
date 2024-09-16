@@ -1,0 +1,195 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Person</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f4f4f9;-->
+<!--            color: #333;-->
+<!--            margin: 0;-->
+<!--            padding: 20px;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            background: #fff;-->
+<!--            border-radius: 8px;-->
+<!--            padding: 20px;-->
+<!--            width: 80%;-->
+<!--            max-width: 600px;-->
+<!--            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+
+<!--        h1 {-->
+<!--            font-size: 24px;-->
+<!--            margin-bottom: 10px;-->
+<!--            color: #4A90E2;-->
+<!--        }-->
+
+<!--        .info {-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+
+<!--        p {-->
+<!--            margin: 5px 0;-->
+<!--            font-size: 16px;-->
+<!--        }-->
+
+<!--        .book-list {-->
+<!--            list-style: none;-->
+<!--            padding: 0;-->
+<!--            margin: 0;-->
+<!--        }-->
+
+<!--        .book-item {-->
+<!--            padding: 10px;-->
+<!--            border-bottom: 1px solid #e1e1e1;-->
+<!--        }-->
+
+<!--        .book-item:last-child {-->
+<!--            border-bottom: none;-->
+<!--        }-->
+
+<!--        .book-link {-->
+<!--            text-decoration: none;-->
+<!--            color: #4A90E2;-->
+<!--            font-size: 16px;-->
+<!--            transition: color 0.3s;-->
+<!--        }-->
+
+<!--        .book-link:hover {-->
+<!--            color: #357ABD;-->
+<!--        }-->
+
+<!--        .message {-->
+<!--            font-size: 16px;-->
+<!--            color: #FF6F61;-->
+<!--            text-align: center;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        .action-links {-->
+<!--            margin-top: 20px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .edit-link, .delete-button {-->
+<!--            display: inline-block;-->
+<!--            background: #4A90E2;-->
+<!--            color: white;-->
+<!--            padding: 10px 20px;-->
+<!--            border-radius: 5px;-->
+<!--            text-decoration: none;-->
+<!--            font-size: 16px;-->
+<!--            transition: background 0.3s;-->
+<!--            margin-right: 10px;-->
+<!--        }-->
+
+<!--        .edit-link:hover, .delete-button:hover {-->
+<!--            background: #357ABD;-->
+<!--        }-->
+
+<!--        .delete-form {-->
+<!--            display: inline;-->
+<!--        }-->
+
+<!--        .delete-form input[type="submit"] {-->
+<!--            background: #E94E3F;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            padding: 10px 20px;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--            transition: background 0.3s;-->
+<!--        }-->
+
+<!--        .delete-form input[type="submit"]:hover {-->
+<!--            background: #D43A2C;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--    <h1 th:text="'Details of ' + ${person.getName()}">Person Details</h1>-->
+<!--    <div class="info">-->
+<!--        <p><strong>Name:</strong> <span th:text="${person.getName()}">John Doe</span></p>-->
+<!--        <p><strong>Year of Birth:</strong> <span th:text="${person.getYearOfBirth()}">1980</span></p>-->
+<!--    </div>-->
+
+<!--    <div th:if="${#lists.isEmpty(books)}" class="message">-->
+<!--        <p>This person hasn't picked up a single book yet.</p>-->
+<!--    </div>-->
+<!--    <ul th:unless="${#lists.isEmpty(books)}" class="book-list">-->
+<!--        <h2>Books Taken:</h2>-->
+<!--        <li class="book-item" th:each="book : ${books}">-->
+<!--            <a class="book-link" th:href="@{/books/{bookId}(bookId=${book.getBookId()})}"-->
+<!--               th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Book</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+
+<!--    <div class="action-links">-->
+<!--        <a class="edit-link" th:href="@{/people/{personId}/edit(personId=${person.getPersonId()})}">Edit</a>-->
+
+<!--        <form class="delete-form" th:method="DELETE" th:action="@{/people/{personId}(personId=${person.getPersonId()})}">-->
+<!--            <input type="submit" value="Delete">-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person</title>
+</head>
+<body>
+
+<p th:text="${person.getName() + ', ' + person.getYearOfBirth()}">VALUE</p>
+<!--<p th:text="${person.getYearOfBirth()}">VALUE</p>-->
+
+
+<div th:if="${books.isEmpty()}">
+    <p>This person hasn't picked up a single book yet.</p>
+    <hr/>
+</div>
+
+<div th:unless="${books.isEmpty()}">
+    <hr/>
+    <b>Books:</b>
+    <br/>
+
+    <table th:each="book : ${books}">
+        <a th:href="@{/books/{bookId}(bookId=${book.getBookId()})}"
+           th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Book</a>
+    </table>
+
+<!--    <li class="book-item" th:each="book : ${books}">-->
+<!--        <a class="book-link" th:href="@{/books/{bookId}(bookId=${book.getBookId()})}"-->
+<!--           th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Book</a>-->
+<!--    </li>-->
+
+</div>
+
+
+
+<!--<a th:href="@{/people/{personId}/edit(personId=${person.getPersonId()})}">Edit</a>-->
+
+<form th:method="GET" th:action="@{/people/{personId}/edit(personId=${person.getPersonId()})}">
+    <input type="submit" value="Edit">
+</form>
+
+<form th:method="DELETE" th:action="@{/people/{personId}(personId=${person.getPersonId()})}">
+    <input type="submit" value="Delete">
+</form>
+</body>
+</html>

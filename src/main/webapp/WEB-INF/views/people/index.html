@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{personId}(personId=${person.getPersonId()})}"
+       th:text="${person.getName() + ', ' + person.getYearOfBirth()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/people/new">Create new person</a>
+
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Index</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f4f4f9;-->
+<!--            color: #333;-->
+<!--            margin: 0;-->
+<!--            padding: 20px;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            width: 80%;-->
+<!--            max-width: 800px;-->
+<!--            background: #fff;-->
+<!--            border-radius: 8px;-->
+<!--            padding: 20px;-->
+<!--            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+
+<!--        h1 {-->
+<!--            font-size: 24px;-->
+<!--            color: #4A90E2;-->
+<!--            margin-bottom: 20px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .person-list {-->
+<!--            list-style: none;-->
+<!--            padding: 0;-->
+<!--        }-->
+
+<!--        .person-item {-->
+<!--            padding: 10px;-->
+<!--            border-bottom: 1px solid #ddd;-->
+<!--        }-->
+
+<!--        .person-item:last-child {-->
+<!--            border-bottom: none;-->
+<!--        }-->
+
+<!--        .person-link {-->
+<!--            text-decoration: none;-->
+<!--            color: #4A90E2;-->
+<!--            font-size: 16px;-->
+<!--            transition: color 0.3s;-->
+<!--        }-->
+
+<!--        .person-link:hover {-->
+<!--            color: #357ABD;-->
+<!--        }-->
+
+<!--        .create-link {-->
+<!--            display: inline-block;-->
+<!--            background: #4A90E2;-->
+<!--            color: white;-->
+<!--            padding: 10px 20px;-->
+<!--            border-radius: 5px;-->
+<!--            text-decoration: none;-->
+<!--            font-size: 16px;-->
+<!--            transition: background 0.3s;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        .create-link:hover {-->
+<!--            background: #357ABD;-->
+<!--        }-->
+
+<!--        hr {-->
+<!--            width: 100%;-->
+<!--            border: 1px solid #ddd;-->
+<!--            margin: 20px 0;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--    <h1>People List</h1>-->
+<!--    <ul class="person-list" th:each="person : ${people}">-->
+<!--        <li class="person-item">-->
+<!--            <a class="person-link" th:href="@{/people/{personId}(personId=${person.getPersonId()})}"-->
+<!--               th:text="${person.getName() + ', ' + person.getYearOfBirth()}">User</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+
+<!--    <hr/>-->
+
+<!--    <a class="create-link" href="/people/new">Create new person</a>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->

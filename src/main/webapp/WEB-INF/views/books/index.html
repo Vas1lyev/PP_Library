@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<div th:each="book : ${books}">
+    <a th:href="@{/books/{bookId}(bookId=${book.getBookId()})}"
+       th:text="${book.getTitle() + ', ' + book.getAuthor()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/books/new">Create new book</a>
+
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Books Index</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f4f4f9;-->
+<!--            color: #333;-->
+<!--            margin: 0;-->
+<!--            padding: 20px;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            width: 80%;-->
+<!--            max-width: 800px;-->
+<!--            background: #fff;-->
+<!--            border-radius: 8px;-->
+<!--            padding: 20px;-->
+<!--            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+
+<!--        h1 {-->
+<!--            font-size: 24px;-->
+<!--            color: #4A90E2;-->
+<!--            margin-bottom: 20px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .book-list {-->
+<!--            list-style: none;-->
+<!--            padding: 0;-->
+<!--        }-->
+
+<!--        .book-item {-->
+<!--            padding: 10px;-->
+<!--            border-bottom: 1px solid #ddd;-->
+<!--        }-->
+
+<!--        .book-item:last-child {-->
+<!--            border-bottom: none;-->
+<!--        }-->
+
+<!--        .book-link {-->
+<!--            text-decoration: none;-->
+<!--            color: #4A90E2;-->
+<!--            font-size: 16px;-->
+<!--            transition: color 0.3s;-->
+<!--        }-->
+
+<!--        .book-link:hover {-->
+<!--            color: #357ABD;-->
+<!--        }-->
+
+<!--        .create-link {-->
+<!--            display: inline-block;-->
+<!--            background: #4A90E2;-->
+<!--            color: white;-->
+<!--            padding: 10px 20px;-->
+<!--            border-radius: 5px;-->
+<!--            text-decoration: none;-->
+<!--            font-size: 16px;-->
+<!--            transition: background 0.3s;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        .create-link:hover {-->
+<!--            background: #357ABD;-->
+<!--        }-->
+
+<!--        hr {-->
+<!--            width: 100%;-->
+<!--            border: 1px solid #ddd;-->
+<!--            margin: 20px 0;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--    <h1>Books List</h1>-->
+<!--    <ul class="book-list" th:each="book : ${books}">-->
+<!--        <li class="book-item">-->
+<!--            <a class="book-link" th:href="@{/books/{bookId}(bookId=${book.getBookId()})}"-->
+<!--               th:text="${book.getTitle() + ', ' + book.getAuthor()}">Book</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+
+<!--    <hr/>-->
+
+<!--    <a class="create-link" href="/books/new">Create new book</a>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
