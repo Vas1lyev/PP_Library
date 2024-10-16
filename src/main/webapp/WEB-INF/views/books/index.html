@@ -3,11 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+
+    <style>
+        .pagination ul {
+            list-style-type: none;
+            display: flex;
+            gap: 5px;
+        }
+
+        .pagination li a {
+            text-decoration: none;
+            padding: 5px 10px;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .pagination li a.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
 
 <div th:each="book : ${books}">
-    <a th:href="@{/books/{bookId}(bookId=${book.getBookId()})}"
+    <a th:href="@{/books/{id}(id=${book.getId()})}"
        th:text="${book.getTitle() + ', ' + book.getAuthor()}">user</a>
 </div>
 
@@ -15,6 +36,16 @@
 <hr/>
 
 <a href="/books/new">Create new book</a>
+
+<div class="pagination">
+    <ul>
+        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+            <a th:href="@{/books(page=${i}, books_per_page=${booksPerPage}, sort_by_year=${sortByYear})}"
+               th:text="${i+1}"
+               th:classappend="${i} == ${currentPage} ? 'active' : ''"></a>
+        </li>
+    </ul>
+</div>
 
 </body>
 </html>
