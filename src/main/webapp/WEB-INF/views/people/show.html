@@ -7,8 +7,6 @@
 <body>
 
 <p th:text="${person.getName() + ', ' + person.getYearOfBirth()}">VALUE</p>
-<!--<p th:text="${person.getYearOfBirth()}">VALUE</p>-->
-
 
 <div th:if="${books.isEmpty()}">
     <p>This person hasn't picked up a single book yet.</p>
@@ -21,26 +19,26 @@
     <br/>
 
     <table th:each="book : ${books}">
-        <a th:href="@{/books/{bookId}(bookId=${book.getBookId()})}"
-           th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Book</a>
-    </table>
+        <div th:if="${book.isExpired()}">
+            <a th:href="@{/books/{id}(id=${book.getId()})}"
+               style="color: red;"
+               th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Book</a>
+        </div>
 
-    <!--    <li class="book-item" th:each="book : ${books}">-->
-    <!--        <a class="book-link" th:href="@{/books/{bookId}(bookId=${book.getBookId()})}"-->
-    <!--           th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Book</a>-->
-    <!--    </li>-->
+        <div th:unless="${book.isExpired()}">
+            <a th:href="@{/books/{id}(id=${book.getId()})}"
+               th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Book</a>
+        </div>
+    </table>
 
 </div>
 
 
-
-<!--<a th:href="@{/people/{personId}/edit(personId=${person.getPersonId()})}">Edit</a>-->
-
-<form th:method="GET" th:action="@{/people/{personId}/edit(personId=${person.getPersonId()})}">
+<form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
     <input type="submit" value="Edit">
 </form>
 
-<form th:method="DELETE" th:action="@{/people/{personId}(personId=${person.getPersonId()})}">
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
     <input type="submit" value="Delete">
 </form>
 </body>
